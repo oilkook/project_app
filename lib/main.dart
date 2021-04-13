@@ -28,19 +28,20 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   bool isLoad = true;
   var myData;
+
   Timer _timer;
   @override
   void initState() {
     _timer = Timer.periodic(Duration(minutes: 1), (timer) {
       ActionGet.getSheetData().then((result) {
         setState(() {
-          myData = result;
+          myData = result.reversed.toList();
         });
       });
     });
     ActionGet.getSheetData().then((result) {
       setState(() {
-        myData = result;
+        myData = result.reversed.toList();
       });
     }).whenComplete(() {
       setState(() {

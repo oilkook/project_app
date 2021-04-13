@@ -22,7 +22,8 @@ class MyItem extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                       color: Colors.blue[900]),
                 ),
-                Text('${data}'),
+                Text(
+                    '${DateTime.parse(data['informationDate']).toLocal().day}/${DateTime.parse(data['informationDate']).toLocal().month}/${DateTime.parse(data['informationDate']).toLocal().year}เวลา${DateTime.parse(data['informationDate']).toLocal().hour}:${DateTime.parse(data['informationDate']).toLocal().minute}น.'),
               ],
             ),
             Row(
@@ -34,7 +35,7 @@ class MyItem extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                       color: Colors.blue[900]),
                 ),
-                //Text('${data['emailaddress']}'),
+                Text('${data['emailaddress']}'),
               ],
             ),
             Row(
@@ -46,7 +47,7 @@ class MyItem extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                       color: Colors.blue[900]),
                 ),
-                //Text('${data['repairname']}'),
+                Text('${data['repairname']}'),
               ],
             ),
             Row(
@@ -58,9 +59,9 @@ class MyItem extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                       color: Colors.blue[900]),
                 ),
-                /*Text(
+                Text(
                   '${data['dormitoryX']}',
-                ),*/
+                ),
               ],
             ),
             Row(
@@ -72,7 +73,7 @@ class MyItem extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                       color: Colors.blue[900]),
                 ),
-                //Text('${data['phonenumber']}'),
+                Text('${data['phonenumber']}'),
               ],
             ),
           ],
