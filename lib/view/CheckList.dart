@@ -19,7 +19,7 @@ class _CheckListState extends State<CheckList> {
       appBar: AppBar(
         title: Text('ส่งอีเมลตอบกลับ'),
       ),
-      backgroundColor: Colors.green[200],
+      backgroundColor: Colors.white,
       body: Center(
         child: Column(
           children: [

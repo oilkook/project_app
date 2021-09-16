@@ -47,7 +47,7 @@ class Account extends StatelessWidget {
                                     Border.all(width: 4, color: Colors.white),
                                 color: Colors.blue),
                             child: Icon(Icons.edit, color: Colors.white),
-                          ))
+                          )),
                     ],
                   ),
                 )

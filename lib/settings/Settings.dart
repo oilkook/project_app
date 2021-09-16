@@ -45,7 +45,7 @@ class _SettingsState extends State<Settings> {
             buildLanguageOptionRow(context, "Language"),
             buildAccountOptionRow(context, "Privacy and security"),
             SwitchListTile(
-              activeColor: Colors.purple,
+              activeColor: Colors.blue,
               contentPadding: const EdgeInsets.all(0),
               value: true,
               title: Text("Received notification",

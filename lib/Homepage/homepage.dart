@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:project_app/Homepage/home_page1.dart';
+import 'package:project_app/Homepage/page_yesterday.dart';
 import 'package:project_app/Homepage/menu_Item.dart';
 import 'package:project_app/account/Account.dart';
 import 'package:project_app/actions/ActionGet.dart';
@@ -24,6 +24,8 @@ class _HomePageState extends State<HomePage> {
   final bool isSidebarOpened = false;
   final _animationDuration = const Duration(milliseconds: 500);
 
+  String googleDriveUrl = "https://drive.google.com/uc?export=view&id=";
+
   Timer _timer;
   @override
   void initState() {
@@ -35,6 +37,7 @@ class _HomePageState extends State<HomePage> {
       });
     });
     ActionGet.getSheetData().then((result) {
+      print(result.toString());
       setState(() {
         myData = result.reversed.toList();
       });
@@ -128,7 +131,7 @@ class _HomePageState extends State<HomePage> {
                                     print('Home');
                                     Navigator.push(context,
                                         MaterialPageRoute(builder: (context) {
-                                      return Home();
+                                      return HomePage();
                                     }));
                                   },
                                   child: MenuItem(
@@ -217,12 +220,28 @@ class _HomePageState extends State<HomePage> {
           ),
           body: TabBarView(
             children: [
+              // Center(
+              //   child: PageYesterday(),
+              // ),
+
+              // Center(
+              //     // child: Text('Page 1'),
+              //     child: Image(
+              //   image: NetworkImage(
+              //       "https://drive.google.com/uc?export=view&id=1lzZBMkC9be3THrr85ZB31YyEXjh3Fk-r"),
+              // )
+              //     // child: Container(
+              //     //   child: HomePage1(),
+              //     // ),
+              //     ),
               Center(
-                child: Text('Page 1'),
-                // child: Container(
-                //   child: HomePage1(),
-                // ),
-              ),
+                  child: isLoad == true
+                      ? CircularProgressIndicator()
+                      : ListView.builder(
+                          itemCount: myData.length,
+                          itemBuilder: (context, index) =>
+                              MyItem(data: myData[index]),
+                        )),
               Center(
                 child: Center(
                     child: isLoad == true

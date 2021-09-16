@@ -1,4 +1,4 @@
 class Urls {
   static String api =
-      "https://script.google.com/macros/s/AKfycbzfXodjslhV80KAia45WqvQAz2863H2Q0LfLBrhYHMuZ1m9-DQ/exec";
+      "https://script.google.com/macros/s/AKfycbzaqxvp0gFDGS8_GlOTpyryPIzx4vT4GTx9fDEY37Dg2bGDpIA/exec";
 }
