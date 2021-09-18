@@ -8,6 +8,7 @@ import 'package:project_app/account/Account.dart';
 import 'package:project_app/actions/ActionGet.dart';
 import 'package:project_app/home/Home.dart';
 import 'package:project_app/main.dart';
+import 'package:project_app/notifications/notifications.dart';
 import 'package:project_app/settings/Settings.dart';
 import 'package:project_app/widget/MyItem.dart';
 
@@ -27,6 +28,8 @@ class _HomePageState extends State<HomePage> {
   String googleDriveUrl = "https://drive.google.com/uc?export=view&id=";
 
   Timer _timer;
+
+  final Notifications _notifications = Notifications();
   @override
   void initState() {
     _timer = Timer.periodic(Duration(minutes: 1), (timer) {
@@ -47,6 +50,12 @@ class _HomePageState extends State<HomePage> {
       });
     });
     super.initState();
+
+    this._notifications.initNotifications();
+  }
+
+  void _pushNotification() {
+    this._notifications.pushNotification();
   }
 
   @override
@@ -256,6 +265,11 @@ class _HomePageState extends State<HomePage> {
                 child: Text('Page 3'),
               ),
             ],
+          ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: _pushNotification,
+            tooltip: 'Push notifications',
+            child: Icon(Icons.notifications),
           ),
         ),
       ),

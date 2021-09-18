@@ -6,10 +6,17 @@ class FormScreens extends StatelessWidget {
   final String emailaddress;
   final String roomnumber;
   final String dormitoryX;
+  final String list;
+  final String photo;
 
-  const FormScreens(
-      {Key key, this.emailaddress, this.dormitoryX, this.roomnumber})
-      : super(key: key);
+  const FormScreens({
+    Key key,
+    this.emailaddress,
+    this.dormitoryX,
+    this.roomnumber,
+    this.list,
+    this.photo,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,15 +29,19 @@ class FormScreens extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  Text('ที่อยู่อีเมล(E-mail):',
-                      style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.blue[900])),
-                  Text(emailaddress),
-                ],
+              child: Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Center(
+                      child: Image(
+                        height: 200,
+                        width: 200,
+                        image: NetworkImage(photo),
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
             Padding(
@@ -59,6 +70,40 @@ class FormScreens extends StatelessWidget {
                 ],
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  Text(
+                    'รายการแจ้งซ่อม : ',
+                    style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blue[900]),
+                    overflow: TextOverflow.visible,
+                  ),
+                  Expanded(
+                      child: Text(
+                    list,
+                    maxLines: 2,
+                    overflow: TextOverflow.visible,
+                  )),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  Text('ที่อยู่อีเมล(E-mail):',
+                      style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.blue[900])),
+                  Text(emailaddress),
+                ],
+              ),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -72,7 +117,7 @@ class FormScreens extends StatelessWidget {
                           return CheckList();
                         }));
                       },
-                      child: Text('ส่งEmail')),
+                      child: Text('ยืนยัน')),
                 ),
               ],
             ),

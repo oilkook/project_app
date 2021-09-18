@@ -247,18 +247,6 @@ class MyItem extends StatelessWidget {
                           color: Colors.blue[900]),
                       overflow: TextOverflow.visible,
                     ),
-                    // Expanded(
-                    //   child: Text(
-                    //     '$googleDriveUrl',
-                    //     overflow: TextOverflow.fade,
-                    //   ),
-                    // ),
-                    // Container(
-                    //   decoration: BoxDecoration(
-                    //       image: DecorationImage(
-                    //           image: NetworkImage(
-                    //               '$googleDriveUrl' + '$afterSplit',))),
-                    // ),
                   ],
                 ),
               ),
@@ -266,6 +254,7 @@ class MyItem extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Center(
                         child: Image(
@@ -307,6 +296,8 @@ class MyItem extends StatelessWidget {
                               emailaddress: "${data["emailaddress"]}",
                               dormitoryX: "${data["dormitoryX"]}",
                               roomnumber: "${data["roomnumber"]}",
+                              list: "${data["list"]}",
+                              photo: getImageUrl("${data["photo"]}"),
                             );
                           }));
                         },
