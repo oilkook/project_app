@@ -37,8 +37,8 @@ class Notifications {
         NotificationDetails(android: androidPlatformChannelSpecifics);
     await flutterLocalNotificationsPlugin.show(
         0,
-        'Push Notifications With Flutter',
-        'Start to push notifications locally (@jeroenouw)',
+        'ใบแจ้งซ่อมหอพักนักศึกษาในกำกับฯ 1,2และ3',
+        'แจ้งเตือนกล่องข้อความใหม่ 1',
         platformChannelSpecifics,
         payload: 'item x');
   }
