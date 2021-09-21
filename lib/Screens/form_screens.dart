@@ -1,28 +1,35 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:project_app/Homepage/page_yesterday.dart';
-import 'package:project_app/view/CheckList.dart';
+import 'package:project_app/Homepage/homepage.dart';
 
 class FormScreens extends StatelessWidget {
-  final String emailaddress;
   final String roomnumber;
   final String dormitoryX;
   final String list;
   final String photo;
+  final String details;
+  final String datetime;
 
   const FormScreens({
     Key key,
-    this.emailaddress,
     this.dormitoryX,
     this.roomnumber,
     this.list,
     this.photo,
+    this.details,
+    this.datetime,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('บันทึกผลการแจ้งซ่อม'),
+        title: Text('ยืนยันรายการแจ้งซ่อม'),
+        leading: IconButton(
+          color: Colors.white,
+          icon: Icon(Icons.close),
+          onPressed: () => Navigator.pop(context),
+        ),
       ),
       body: Center(
         child: Column(
@@ -48,12 +55,12 @@ class FormScreens extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Row(
                 children: [
-                  Text('ห้อง(Room):',
+                  Text('วันที่/เวลาที่สะดวกเข้าซ่อม : ',
                       style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
                           color: Colors.blue[900])),
-                  Text(roomnumber),
+                  Text(datetime),
                 ],
               ),
             ),
@@ -61,12 +68,19 @@ class FormScreens extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Row(
                 children: [
-                  Text('หอพัก(Dormitory) :',
+                  Text('หอพัก : ',
                       style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
                           color: Colors.blue[900])),
                   Text(dormitoryX),
+                  Text('    '),
+                  Text('ห้อง : ',
+                      style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.blue[900])),
+                  Text(roomnumber),
                 ],
               ),
             ),
@@ -95,32 +109,64 @@ class FormScreens extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Row(
                 children: [
-                  Text('ที่อยู่อีเมล(E-mail):',
+                  Text('รายละเอียด : ',
                       style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
                           color: Colors.blue[900])),
-                  Text(emailaddress),
+                  Text(details),
                 ],
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(3.0),
-                  child: ElevatedButton(
-                      onPressed: () {
-                        print('object');
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                          return CheckList();
-                        }));
-                      },
-                      child: Text('ยืนยัน')),
+            //
+            GestureDetector(
+              behavior: HitTestBehavior.translucent,
+              onTap: () async {
+                showCupertinoDialog(
+                  context: context,
+                  builder: (context) {
+                    return CupertinoAlertDialog(
+                      title: Text(
+                        "ยืนยันการเข้าซ่อม",
+                      ),
+                      actions: [
+                        CupertinoDialogAction(
+                          child: Text("ยกเลิก"),
+                          onPressed: () => Navigator.pop(context),
+                        ),
+                        CupertinoDialogAction(
+                            child: Text("ส่ง"),
+                            onPressed: () {
+                              print('ยืนยัน');
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
+                                return HomePage();
+                              }));
+                            })
+                      ],
+                    );
+                  },
+                );
+              },
+              child: Card(
+                elevation: 8,
+                margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+                child: Container(
+                  alignment: Alignment.center,
+                  width: MediaQuery.of(context).size.width,
+                  padding: const EdgeInsets.symmetric(vertical: 15),
+                  color: Colors.blueGrey[50],
+                  child: Text("ยืนยันการซ่อม",
+                      style: TextStyle(
+                          color: Colors.red[700],
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold)),
                 ),
-              ],
+              ),
             ),
+            SizedBox(
+              height: 50,
+            )
           ],
         ),
       ),

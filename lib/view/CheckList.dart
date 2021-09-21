@@ -1,17 +1,28 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:project_app/Homepage/homepage.dart';
 
-class CheckList extends StatefulWidget {
-  CheckList({Key key}) : super(key: key);
+class CheckList extends StatelessWidget {
+  final String roomnumber;
+  final String dormitoryX;
+  final String email;
+  final String phonenumber;
+  final String list;
+  final String datetime;
+  final String line;
+  final String name;
 
-  @override
-  _CheckListState createState() => _CheckListState();
-}
-
-class _CheckListState extends State<CheckList> {
-  bool isButtonPress = false;
-  TextEditingController nameController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
-  TextEditingController telephone = TextEditingController();
+  const CheckList({
+    Key key,
+    this.datetime,
+    this.roomnumber,
+    this.list,
+    this.dormitoryX,
+    this.email,
+    this.phonenumber,
+    this.line,
+    this.name,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,115 +30,236 @@ class _CheckListState extends State<CheckList> {
       child: Scaffold(
         appBar: AppBar(
           title: Text('ส่งอีเมลตอบกลับ'),
+          leading: IconButton(
+            color: Colors.white,
+            icon: Icon(Icons.close),
+            onPressed: () => Navigator.pop(context),
+          ),
         ),
         backgroundColor: Colors.white,
         body: Card(
+          elevation: 8,
+          margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
           child: Column(
             children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+              ),
               Row(
                 children: [
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Column(
-                        children: [
-                          Row(
-                            children: [
-                              Text(
-                                "[ประชาสัมพันธ์]แจ้งซ่อม",
-                                style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black),
-                              ),
-                            ],
-                          ),
-                          Text(
-                            "จากฟอร์มการแจ้งซ่อมตามวันเวลาที่กำหนด ขณะนี้ได้ทำการซ่อมเสร็จแล้ว",
-                            style: TextStyle(fontSize: 18, color: Colors.black),
-                          ),
-                        ],
-                      ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        Text(
+                          'ถึง : ',
+                          style: TextStyle(fontSize: 18, color: Colors.black),
+                        ),
+                        Text(
+                          email,
+                          style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.blue[900]),
+                        ),
+                      ],
                     ),
                   ),
                 ],
               ),
               Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: TextField(
-                  controller: nameController,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10)),
-                    hintText: 'Name',
-                  ),
-                  style: TextStyle(color: Colors.black87),
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  "[ประชาสัมพันธ์] แจ้งซ่อมเสร็จสิ้น",
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.blue[900]),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: TextField(
-                  controller: telephone,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10)),
-                    hintText: 'Phone',
-                  ),
-                  style: TextStyle(color: Colors.black87),
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Text(
+                      "จากฟอร์มการแจ้งซ่อมของ ",
+                      style: TextStyle(fontSize: 18, color: Colors.black),
+                    ),
+                    Text(
+                      name,
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                          color: Colors.blue[900]),
+                    ),
+                  ],
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: TextField(
-                  controller: emailController,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10)),
-                    hintText: 'E-Mail',
-                  ),
-                  style: TextStyle(color: Colors.black87),
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Text(
+                      "   -> เบอร์โทรศัพท์ ",
+                      style: TextStyle(fontSize: 18, color: Colors.black),
+                    ),
+                    Text(
+                      phonenumber,
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                          color: Colors.blue[900]),
+                    ),
+                  ],
                 ),
               ),
-              Center(
-                child: ElevatedButton(
-                  child: Text('Send To Email'),
-                  onPressed: () {
-                    setState(() {
-                      isButtonPress = !isButtonPress;
-                    });
-                  },
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Text('   -> หอพัก : ',
+                        style: TextStyle(fontSize: 18, color: Colors.black)),
+                    Text(
+                      dormitoryX,
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                          color: Colors.blue[900]),
+                    ),
+                    Text('    '),
+                    Text('ห้อง : ',
+                        style: TextStyle(fontSize: 18, color: Colors.black)),
+                    Text(
+                      roomnumber,
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                          color: Colors.blue[900]),
+                    ),
+                  ],
                 ),
               ),
-              isButtonPress == false
-                  ? Text('')
-                  : Expanded(
-                      child: Column(
-                        children: [
-                          Text(' '),
-                          Text(
-                            'Your Name  is ${nameController.text.trim()}',
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black),
-                          ),
-                          Text(
-                            ' Phone  is ${telephone.text.trim()}',
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black),
-                          ),
-                          Text(
-                            ' E-mail is ${emailController.text.trim()}',
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black),
-                          ),
-                        ],
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Text(
+                      "ตามวันเวลาที่นัดซ่อม  ",
+                      style: TextStyle(fontSize: 18, color: Colors.black),
+                    ),
+                    Expanded(
+                      child: Text(
+                        datetime,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                            color: Colors.blue[900]),
                       ),
                     ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Text(
+                      "แจ้งซ่อม ",
+                      style: TextStyle(fontSize: 18, color: Colors.black),
+                    ),
+                    Expanded(
+                      child: Text(
+                        list,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                            color: Colors.blue[900]),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.check_box,
+                      color: Colors.green.withOpacity(1.0),
+                    ),
+                    Text(
+                      "  ได้ทำการเข้าซ่อมเสร็จเรียบร้อยแล้ว ",
+                      style: TextStyle(fontSize: 18, color: Colors.black),
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(child: Container()),
+              Container(
+                padding: const EdgeInsets.all(10),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Icon(
+                      Icons.info,
+                      color: Colors.grey.withOpacity(0.50),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text('ทดลองส่งอีเมล')
+                  ],
+                ),
+              ),
+              GestureDetector(
+                behavior: HitTestBehavior.translucent,
+                onTap: () async {
+                  showCupertinoDialog(
+                    context: context,
+                    builder: (context) {
+                      return CupertinoAlertDialog(
+                        title: Text(
+                          "ยืนยันการส่ง Email",
+                        ),
+                        actions: [
+                          CupertinoDialogAction(
+                            child: Text("ยกเลิก"),
+                            onPressed: () => Navigator.pop(context),
+                          ),
+                          CupertinoDialogAction(
+                              child: Text("ส่ง"),
+                              onPressed: () {
+                                print('ส่งอีเมลแล้ว');
+                                Navigator.push(context,
+                                    MaterialPageRoute(builder: (context) {
+                                  return HomePage();
+                                }));
+                              })
+                        ],
+                      );
+                    },
+                  );
+                },
+                child: Card(
+                  elevation: 8,
+                  margin:
+                      const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+                  child: Container(
+                    alignment: Alignment.center,
+                    width: MediaQuery.of(context).size.width,
+                    padding: const EdgeInsets.symmetric(vertical: 15),
+                    color: Colors.blueGrey[50],
+                    child: Text("ส่ง Email",
+                        style: TextStyle(
+                            color: Colors.red[700],
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold)),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 50,
+              )
             ],
           ),
         ),

@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:project_app/Homepage/page_yesterday.dart';
+import 'package:project_app/Homepage/repairconfirm.dart';
 import 'package:project_app/Homepage/menu_Item.dart';
 import 'package:project_app/account/Account.dart';
 import 'package:project_app/actions/ActionGet.dart';
@@ -70,7 +70,7 @@ class _HomePageState extends State<HomePage> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: DefaultTabController(
-        length: 3,
+        length: 2,
         child: Scaffold(
           appBar: AppBar(
             title: Text('RepairMan App'),
@@ -84,13 +84,10 @@ class _HomePageState extends State<HomePage> {
               ),
             ],
             bottom: TabBar(tabs: [
-              Tab(text: 'YesterDay'),
+              Tab(text: 'ใบแจ้งซ่อม'),
               Tab(
-                text: 'ToDay',
+                text: 'รายการเข้าซ่อม',
               ),
-              Tab(
-                text: 'Remain',
-              )
             ]),
           ),
           drawer: Drawer(
@@ -197,11 +194,7 @@ class _HomePageState extends State<HomePage> {
                                 padding: const EdgeInsets.all(8.0),
                                 child: ElevatedButton(
                                   onPressed: () {
-                                    print('Logout');
-                                    Navigator.push(context,
-                                        MaterialPageRoute(builder: (context) {
-                                      return HomePage();
-                                    }));
+                                    SystemNavigator.pop();
                                   },
                                   child: MenuItem(
                                     icon: Icons.logout,
@@ -229,20 +222,6 @@ class _HomePageState extends State<HomePage> {
           ),
           body: TabBarView(
             children: [
-              // Center(
-              //   child: PageYesterday(),
-              // ),
-
-              // Center(
-              //     // child: Text('Page 1'),
-              //     child: Image(
-              //   image: NetworkImage(
-              //       "https://drive.google.com/uc?export=view&id=1lzZBMkC9be3THrr85ZB31YyEXjh3Fk-r"),
-              // )
-              //     // child: Container(
-              //     //   child: HomePage1(),
-              //     // ),
-              //     ),
               Center(
                   child: isLoad == true
                       ? CircularProgressIndicator()
@@ -258,11 +237,8 @@ class _HomePageState extends State<HomePage> {
                         : ListView.builder(
                             itemCount: myData.length,
                             itemBuilder: (context, index) =>
-                                MyItem(data: myData[index]),
+                                RepairConfirm(data: myData[index]),
                           )),
-              ),
-              Center(
-                child: Text('Page 3'),
               ),
             ],
           ),

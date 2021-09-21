@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:project_app/Screens/form_screens.dart';
+import 'package:project_app/view/CheckList.dart';
 
-class MyItem extends StatelessWidget {
+class RepairConfirm extends StatelessWidget {
   final data;
-  MyItem({this.data});
+  RepairConfirm({this.data});
   String getImageUrl(String url) {
     String googleDriveUrl = "https://drive.google.com/uc?export=view&id=";
     // String postman = '${data['photo']}';
@@ -21,6 +22,38 @@ class MyItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Center(
+                        child: Image(
+                          height: 150,
+                          width: 150,
+                          image: NetworkImage(getImageUrl('${data['photo']}')),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              // Padding(
+              //   padding: const EdgeInsets.all(8.0),
+              //   child: Row(
+              //     children: [
+              //       Text(
+              //         'รูปภาพประกอบ : ',
+              //         style: TextStyle(
+              //             fontSize: 14,
+              //             fontWeight: FontWeight.bold,
+              //             color: Colors.blue[900]),
+              //         overflow: TextOverflow.visible,
+              //       ),
+              //     ],
+              //   ),
+              // ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
@@ -41,36 +74,36 @@ class MyItem extends StatelessWidget {
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    Text(
-                      'ที่อยู่อีเมล : ',
-                      style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.blue[900]),
-                    ),
-                    Text('${data['emailaddress']}'),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    Text(
-                      'ชื่อผู้แจ้งซ่อม : ',
-                      style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.blue[900]),
-                    ),
-                    Text('${data['repairname']}'),
-                  ],
-                ),
-              ),
+              // Padding(
+              //   padding: const EdgeInsets.all(8.0),
+              //   child: Row(
+              //     children: [
+              //       Text(
+              //         'ที่อยู่อีเมล : ',
+              //         style: TextStyle(
+              //             fontSize: 14,
+              //             fontWeight: FontWeight.bold,
+              //             color: Colors.blue[900]),
+              //       ),
+              //       Text('${data['emailaddress']}'),
+              //     ],
+              //   ),
+              // ),
+              // Padding(
+              //   padding: const EdgeInsets.all(8.0),
+              //   child: Row(
+              //     children: [
+              //       Text(
+              //         'ชื่อผู้แจ้งซ่อม : ',
+              //         style: TextStyle(
+              //             fontSize: 14,
+              //             fontWeight: FontWeight.bold,
+              //             color: Colors.blue[900]),
+              //       ),
+              //       Text('${data['repairname']}'),
+              //     ],
+              //   ),
+              // ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
@@ -99,36 +132,36 @@ class MyItem extends StatelessWidget {
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    Text(
-                      'เบอร์โทร : ',
-                      style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.blue[900]),
-                    ),
-                    Text('${data['phonenumber']}'),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    Text(
-                      'ID LINE : ',
-                      style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.blue[900]),
-                    ),
-                    Text('${data['lineID']}'),
-                  ],
-                ),
-              ),
+              // Padding(
+              //   padding: const EdgeInsets.all(8.0),
+              //   child: Row(
+              //     children: [
+              //       Text(
+              //         'เบอร์โทร : ',
+              //         style: TextStyle(
+              //             fontSize: 14,
+              //             fontWeight: FontWeight.bold,
+              //             color: Colors.blue[900]),
+              //       ),
+              //       Text('${data['phonenumber']}'),
+              //     ],
+              //   ),
+              // ),
+              // Padding(
+              //   padding: const EdgeInsets.all(8.0),
+              //   child: Row(
+              //     children: [
+              //       Text(
+              //         'ID LINE : ',
+              //         style: TextStyle(
+              //             fontSize: 14,
+              //             fontWeight: FontWeight.bold,
+              //             color: Colors.blue[900]),
+              //       ),
+              //       Text('${data['lineID']}'),
+              //     ],
+              //   ),
+              // ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
@@ -199,23 +232,7 @@ class MyItem extends StatelessWidget {
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Center(
-                        child: Image(
-                          height: 150,
-                          width: 150,
-                          image: NetworkImage(getImageUrl('${data['photo']}')),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -226,18 +243,20 @@ class MyItem extends StatelessWidget {
                           print('object');
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) {
-                            return FormScreens(
+                            return CheckList(
+                              email: "${data['emailaddress']}",
+                              name: "${data['repairname']}",
                               dormitoryX: "${data["dormitoryX"]}",
                               roomnumber: "${data["roomnumber"]}",
-                              list: "${data["list"]}",
-                              details: "${data['details']}",
-                              photo: getImageUrl("${data["photo"]}"),
+                              line: "${data['lineID']}",
+                              phonenumber: "${data['phonenumber']}",
+                              list: "${data['list']}",
                               datetime:
                                   "${DateTime.parse(data['Date']).toLocal().day}/${DateTime.parse(data['Date']).toLocal().month}/${DateTime.parse(data['Date']).toLocal().year} เวลา ${data['time']} น.",
                             );
                           }));
                         },
-                        child: Text('ยืนยันวันเข้าซ่อม')),
+                        child: Text('แจ้งซ่อมเสร็จ')),
                   ),
                 ],
               ),
