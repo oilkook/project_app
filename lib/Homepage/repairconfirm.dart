@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:project_app/Screens/form_screens.dart';
+import 'package:project_app/model/bill.dart';
 import 'package:project_app/view/CheckList.dart';
 
 class RepairConfirm extends StatelessWidget {
-  final data;
+  final Bill data;
   RepairConfirm({this.data});
   String getImageUrl(String url) {
     String googleDriveUrl = "https://drive.google.com/uc?export=view&id=";
@@ -32,7 +33,7 @@ class RepairConfirm extends StatelessWidget {
                         child: Image(
                           height: 150,
                           width: 150,
-                          image: NetworkImage(getImageUrl('${data['photo']}')),
+                          image: NetworkImage(getImageUrl('${data.photo}')),
                         ),
                       )
                     ],
@@ -69,41 +70,12 @@ class RepairConfirm extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      '${DateTime.parse(data['informationDate']).toLocal().day}/${DateTime.parse(data['informationDate']).toLocal().month}/${DateTime.parse(data['informationDate']).toLocal().year} เวลา ${DateTime.parse(data['informationDate']).toLocal().hour}:${DateTime.parse(data['informationDate']).toLocal().minute} น.',
+                      '${DateTime.parse(data.informationDate).toLocal().day}/${DateTime.parse(data.informationDate).toLocal().month}/${DateTime.parse(data.informationDate).toLocal().year} เวลา ${DateTime.parse(data.informationDate).toLocal().hour}:${DateTime.parse(data.informationDate).toLocal().minute} น.',
                     ),
                   ],
                 ),
               ),
-              // Padding(
-              //   padding: const EdgeInsets.all(8.0),
-              //   child: Row(
-              //     children: [
-              //       Text(
-              //         'ที่อยู่อีเมล : ',
-              //         style: TextStyle(
-              //             fontSize: 14,
-              //             fontWeight: FontWeight.bold,
-              //             color: Colors.blue[900]),
-              //       ),
-              //       Text('${data['emailaddress']}'),
-              //     ],
-              //   ),
-              // ),
-              // Padding(
-              //   padding: const EdgeInsets.all(8.0),
-              //   child: Row(
-              //     children: [
-              //       Text(
-              //         'ชื่อผู้แจ้งซ่อม : ',
-              //         style: TextStyle(
-              //             fontSize: 14,
-              //             fontWeight: FontWeight.bold,
-              //             color: Colors.blue[900]),
-              //       ),
-              //       Text('${data['repairname']}'),
-              //     ],
-              //   ),
-              // ),
+
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
@@ -116,7 +88,7 @@ class RepairConfirm extends StatelessWidget {
                           color: Colors.blue[900]),
                     ),
                     Text(
-                      '${data['dormitoryX']}',
+                      '${data.dormitoryX}',
                     ),
                     Text('    '),
                     Text(
@@ -127,41 +99,12 @@ class RepairConfirm extends StatelessWidget {
                           color: Colors.blue[900]),
                     ),
                     Text(
-                      '${data['roomnumber']}',
+                      '${data.roomnumber}',
                     ),
                   ],
                 ),
               ),
-              // Padding(
-              //   padding: const EdgeInsets.all(8.0),
-              //   child: Row(
-              //     children: [
-              //       Text(
-              //         'เบอร์โทร : ',
-              //         style: TextStyle(
-              //             fontSize: 14,
-              //             fontWeight: FontWeight.bold,
-              //             color: Colors.blue[900]),
-              //       ),
-              //       Text('${data['phonenumber']}'),
-              //     ],
-              //   ),
-              // ),
-              // Padding(
-              //   padding: const EdgeInsets.all(8.0),
-              //   child: Row(
-              //     children: [
-              //       Text(
-              //         'ID LINE : ',
-              //         style: TextStyle(
-              //             fontSize: 14,
-              //             fontWeight: FontWeight.bold,
-              //             color: Colors.blue[900]),
-              //       ),
-              //       Text('${data['lineID']}'),
-              //     ],
-              //   ),
-              // ),
+
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
@@ -174,7 +117,7 @@ class RepairConfirm extends StatelessWidget {
                           color: Colors.blue[900]),
                     ),
                     Text(
-                        '${DateTime.parse(data['Date']).toLocal().day}/${DateTime.parse(data['Date']).toLocal().month}/${DateTime.parse(data['Date']).toLocal().year} เวลา ${data['time']} น.'),
+                        '${DateTime.parse(data.date).toLocal().day}/${DateTime.parse(data.date).toLocal().month}/${DateTime.parse(data.date).toLocal().year} เวลา ${data.time} น.'),
                   ],
                 ),
               ),
@@ -189,7 +132,7 @@ class RepairConfirm extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                           color: Colors.blue[900]),
                     ),
-                    Text('${data['status']}')
+                    Text('${data.status}')
                   ],
                 ),
               ),
@@ -209,7 +152,7 @@ class RepairConfirm extends StatelessWidget {
                     ),
                     Expanded(
                       child: Text(
-                        '${data['list']}',
+                        '${data.list}',
                         maxLines: 2,
                         overflow: TextOverflow.visible,
                       ),
@@ -228,7 +171,7 @@ class RepairConfirm extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                           color: Colors.blue[900]),
                     ),
-                    Text('${data['details']}'),
+                    Text('${data.details}'),
                   ],
                 ),
               ),
@@ -244,15 +187,15 @@ class RepairConfirm extends StatelessWidget {
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) {
                             return CheckList(
-                              email: "${data['emailaddress']}",
-                              name: "${data['repairname']}",
-                              dormitoryX: "${data["dormitoryX"]}",
-                              roomnumber: "${data["roomnumber"]}",
-                              line: "${data['lineID']}",
-                              phonenumber: "${data['phonenumber']}",
-                              list: "${data['list']}",
+                              email: "${data.emailaddress}",
+                              name: "${data.repairname}",
+                              dormitoryX: "${data.dormitoryX}",
+                              roomnumber: "${data.roomnumber}",
+                              line: "${data.lineID}",
+                              phonenumber: "${data.phonenumber}",
+                              list: "${data.list}",
                               datetime:
-                                  "${DateTime.parse(data['Date']).toLocal().day}/${DateTime.parse(data['Date']).toLocal().month}/${DateTime.parse(data['Date']).toLocal().year} เวลา ${data['time']} น.",
+                                  "${DateTime.parse(data.date).toLocal().day}/${DateTime.parse(data.date).toLocal().month}/${DateTime.parse(data.date).toLocal().year} เวลา ${data.time} น.",
                             );
                           }));
                         },

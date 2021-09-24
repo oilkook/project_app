@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:project_app/Screens/form_screens.dart';
+import 'package:project_app/model/bill.dart';
 
 class MyItem extends StatelessWidget {
-  final data;
+  final Bill data;
   MyItem({this.data});
   String getImageUrl(String url) {
     String googleDriveUrl = "https://drive.google.com/uc?export=view&id=";
@@ -36,7 +37,7 @@ class MyItem extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      '${DateTime.parse(data['informationDate']).toLocal().day}/${DateTime.parse(data['informationDate']).toLocal().month}/${DateTime.parse(data['informationDate']).toLocal().year} เวลา ${DateTime.parse(data['informationDate']).toLocal().hour}:${DateTime.parse(data['informationDate']).toLocal().minute} น.',
+                      '${DateTime.parse(data.informationDate).toLocal().day}/${DateTime.parse(data.informationDate).toLocal().month}/${DateTime.parse(data.informationDate).toLocal().year} เวลา ${DateTime.parse(data.informationDate).toLocal().hour}:${DateTime.parse(data.informationDate).toLocal().minute} น.',
                     ),
                   ],
                 ),
@@ -52,7 +53,7 @@ class MyItem extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                           color: Colors.blue[900]),
                     ),
-                    Text('${data['emailaddress']}'),
+                    Text('${data.emailaddress}'),
                   ],
                 ),
               ),
@@ -67,7 +68,7 @@ class MyItem extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                           color: Colors.blue[900]),
                     ),
-                    Text('${data['repairname']}'),
+                    Text('${data.repairname}'),
                   ],
                 ),
               ),
@@ -83,7 +84,7 @@ class MyItem extends StatelessWidget {
                           color: Colors.blue[900]),
                     ),
                     Text(
-                      '${data['dormitoryX']}',
+                      '${data.dormitoryX}',
                     ),
                     Text('    '),
                     Text(
@@ -94,7 +95,7 @@ class MyItem extends StatelessWidget {
                           color: Colors.blue[900]),
                     ),
                     Text(
-                      '${data['roomnumber']}',
+                      '${data.roomnumber}',
                     ),
                   ],
                 ),
@@ -110,7 +111,7 @@ class MyItem extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                           color: Colors.blue[900]),
                     ),
-                    Text('${data['phonenumber']}'),
+                    Text('${data.phonenumber}'),
                   ],
                 ),
               ),
@@ -125,7 +126,7 @@ class MyItem extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                           color: Colors.blue[900]),
                     ),
-                    Text('${data['lineID']}'),
+                    Text('${data.lineID}'),
                   ],
                 ),
               ),
@@ -141,7 +142,7 @@ class MyItem extends StatelessWidget {
                           color: Colors.blue[900]),
                     ),
                     Text(
-                        '${DateTime.parse(data['Date']).toLocal().day}/${DateTime.parse(data['Date']).toLocal().month}/${DateTime.parse(data['Date']).toLocal().year} เวลา ${data['time']} น.'),
+                        '${DateTime.parse(data.date).toLocal().day}/${DateTime.parse(data.date).toLocal().month}/${DateTime.parse(data.date).toLocal().year} เวลา ${data.time} น.'),
                   ],
                 ),
               ),
@@ -156,7 +157,7 @@ class MyItem extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                           color: Colors.blue[900]),
                     ),
-                    Text('${data['status']}')
+                    Text('${data.status}')
                   ],
                 ),
               ),
@@ -176,7 +177,7 @@ class MyItem extends StatelessWidget {
                     ),
                     Expanded(
                       child: Text(
-                        '${data['list']}',
+                        '${data.list}',
                         maxLines: 2,
                         overflow: TextOverflow.visible,
                       ),
@@ -195,7 +196,7 @@ class MyItem extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                           color: Colors.blue[900]),
                     ),
-                    Text('${data['details']}'),
+                    Text('${data.details}'),
                   ],
                 ),
               ),
@@ -209,7 +210,7 @@ class MyItem extends StatelessWidget {
                         child: Image(
                           height: 150,
                           width: 150,
-                          image: NetworkImage(getImageUrl('${data['photo']}')),
+                          image: NetworkImage(getImageUrl('${data.photo}')),
                         ),
                       )
                     ],
@@ -227,13 +228,13 @@ class MyItem extends StatelessWidget {
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) {
                             return FormScreens(
-                              dormitoryX: "${data["dormitoryX"]}",
-                              roomnumber: "${data["roomnumber"]}",
-                              list: "${data["list"]}",
-                              details: "${data['details']}",
-                              photo: getImageUrl("${data["photo"]}"),
+                              dormitoryX: "${data.dormitoryX}",
+                              roomnumber: "${data.roomnumber}",
+                              list: "${data.list}",
+                              details: "${data.details}",
+                              photo: getImageUrl("${data.photo}"),
                               datetime:
-                                  "${DateTime.parse(data['Date']).toLocal().day}/${DateTime.parse(data['Date']).toLocal().month}/${DateTime.parse(data['Date']).toLocal().year} เวลา ${data['time']} น.",
+                                  "${DateTime.parse(data.date).toLocal().day}/${DateTime.parse(data.date).toLocal().month}/${DateTime.parse(data.date).toLocal().year} เวลา ${data.time} น.",
                             );
                           }));
                         },

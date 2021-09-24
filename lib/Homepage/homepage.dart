@@ -2,12 +2,14 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:project_app/Homepage/repairconfirm.dart';
 import 'package:project_app/Homepage/menu_Item.dart';
 import 'package:project_app/account/Account.dart';
 import 'package:project_app/actions/ActionGet.dart';
 import 'package:project_app/home/Home.dart';
 import 'package:project_app/main.dart';
+import 'package:project_app/model/bill.dart';
 import 'package:project_app/notifications/notifications.dart';
 import 'package:project_app/settings/Settings.dart';
 import 'package:project_app/widget/MyItem.dart';
@@ -21,7 +23,9 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   bool isLoad = true;
-  var myData;
+  List<Bill> myData = [];
+  List<Bill> requestedStatus = [];
+  List<Bill> repairConfirm = [];
   final bool isSidebarOpened = false;
   final _animationDuration = const Duration(milliseconds: 500);
 
@@ -30,25 +34,34 @@ class _HomePageState extends State<HomePage> {
   Timer _timer;
 
   final Notifications _notifications = Notifications();
+
+  initialAction() async {
+    final List<Bill> res = await ActionGet.getSheetData();
+    print("res ----> ${res.runtimeType}");
+
+    res.sort(
+        (Bill a, Bill b) => b.informationDate.compareTo(a.informationDate));
+
+    print(res.toString());
+    final List<Bill> msg_0 =
+        res.where((element) => element.msg == "0").toList();
+    final List<Bill> msg_1 =
+        res.where((element) => element.msg == "1").toList();
+
+    setState(() {
+      requestedStatus = msg_0;
+      repairConfirm = msg_1;
+      isLoad = false;
+    });
+  }
+
   @override
   void initState() {
+    initialAction();
     _timer = Timer.periodic(Duration(minutes: 1), (timer) {
-      ActionGet.getSheetData().then((result) {
-        setState(() {
-          myData = result.reversed.toList();
-        });
-      });
+      initialAction();
     });
-    ActionGet.getSheetData().then((result) {
-      print(result.toString());
-      setState(() {
-        myData = result.reversed.toList();
-      });
-    }).whenComplete(() {
-      setState(() {
-        isLoad = false;
-      });
-    });
+
     super.initState();
 
     this._notifications.initNotifications();
@@ -84,10 +97,17 @@ class _HomePageState extends State<HomePage> {
               ),
             ],
             bottom: TabBar(tabs: [
-              Tab(text: 'ใบแจ้งซ่อม'),
-              Tab(
-                text: 'รายการเข้าซ่อม',
+              // Tab(text: 'ใบแจ้งซ่อม'),
+              GestureDetector(
+                child: Tab(text: 'ใบแจ้งซ่อม'),
+                onTap: () => initialAction(),
               ),
+              GestureDetector(
+                child: Tab(
+                  text: 'รายการเข้าซ่อม',
+                ),
+                onTap: () => initialAction(),
+              )
             ]),
           ),
           drawer: Drawer(
@@ -222,24 +242,32 @@ class _HomePageState extends State<HomePage> {
           ),
           body: TabBarView(
             children: [
-              Center(
-                  child: isLoad == true
-                      ? CircularProgressIndicator()
-                      : ListView.builder(
-                          itemCount: myData.length,
-                          itemBuilder: (context, index) =>
-                              MyItem(data: myData[index]),
-                        )),
-              Center(
-                child: Center(
-                    child: isLoad == true
-                        ? CircularProgressIndicator()
-                        : ListView.builder(
-                            itemCount: myData.length,
-                            itemBuilder: (context, index) =>
-                                RepairConfirm(data: myData[index]),
-                          )),
-              ),
+              isLoad == true
+                  ? SpinKitPouringHourGlassRefined(color: Colors.blue)
+                  : requestedStatus.length > 0
+                      ? ListView.builder(
+                          itemCount: requestedStatus.length,
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) {
+                            return MyItem(
+                              data: requestedStatus[index],
+                            );
+                          },
+                        )
+                      : Center(child: Text("No Requested Now")),
+              isLoad == true
+                  ? SpinKitPouringHourGlassRefined(color: Colors.blue)
+                  : repairConfirm.length > 0
+                      ? ListView.builder(
+                          itemCount: repairConfirm.length,
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) {
+                            return RepairConfirm(
+                              data: repairConfirm[index],
+                            );
+                          },
+                        )
+                      : Center(child: Text("No RequestedConfirm Now")),
             ],
           ),
           floatingActionButton: FloatingActionButton(
