@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mailer/mailer.dart';
+import 'package:mailer/smtp_server.dart';
 import 'package:project_app/Homepage/homepage.dart';
+import 'package:project_app/view/sent_email.dart';
 
 class CheckList extends StatelessWidget {
   final String roomnumber;
@@ -227,14 +230,15 @@ class CheckList extends StatelessWidget {
                             onPressed: () => Navigator.pop(context),
                           ),
                           CupertinoDialogAction(
-                              child: Text("ส่ง"),
-                              onPressed: () {
-                                print('ส่งอีเมลแล้ว');
-                                Navigator.push(context,
-                                    MaterialPageRoute(builder: (context) {
-                                  return HomePage();
-                                }));
-                              })
+                            child: Text("ส่ง"),
+                            onPressed: () {
+                              print('ส่งอีเมลแล้ว');
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
+                                return HomePage();
+                              }));
+                            },
+                          ),
                         ],
                       );
                     },
@@ -266,4 +270,37 @@ class CheckList extends StatelessWidget {
       ),
     );
   }
+
+  // Future sendEmail() async {
+  //   final email = 's6135512017@phuket.psu.ac.th';
+
+  //   String username = 's6135512017@phuket.psu.ac.th';
+  //   String password = '1909802402869';
+  //   final smtpServer = gmail(username, password);
+  //   final message = Message()
+  //     ..from = Address(email, 'Papavarin')
+  //     ..recipients = ['s6135512017@phuket.psu.ac.th']
+  //     ..subject = 'Hello RepairMan'
+  //     ..text = 'This is a test Email';
+  //   try {
+  //     await send(message, smtpServer);
+  //     showSnackBar('Sent Email Success');
+  //   } on MailerException catch (e) {
+  //     print(e);
+  //   }
+  // }
+
+  // void showSnackBar(String text) {
+  //   final snackBar = SnackBar(
+  //     content: Text(
+  //       text,
+  //       style: TextStyle(fontSize: 20),
+  //     ),
+  //     backgroundColor: Colors.orange,
+  //   );
+
+  //   ScaffoldMessenger.of(context)
+  //     ..removeCurrentSnackBar()
+  //     ..showSnackBar(snackBar);
+  // }
 }

@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_app/Homepage/homepage.dart';
+import 'package:project_app/Screens/home/home_screen.dart';
+
+import 'package:project_app/constants.dart';
+import 'package:project_app/login/LoginPage.dart';
 
 void main() {
   runApp(App());
@@ -12,14 +16,15 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData.from(
-        colorScheme: ColorScheme.fromSwatch(accentColor: Colors.blue),
+      theme: ThemeData(
+        scaffoldBackgroundColor: kBackgroundColor,
+        primaryColor: kPrimaryColor,
         textTheme: GoogleFonts.kanitTextTheme(
-          Theme.of(context).textTheme,
+          Theme.of(context).textTheme.apply(bodyColor: kTextColor),
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: Container(child: HomePage()),
+      home: HomeScreen(),
     );
   }
 }

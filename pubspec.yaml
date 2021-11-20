@@ -35,6 +35,10 @@ dependencies:
   flutter_local_notifications: ^8.2.0
   flutter_spinkit: ^5.1.0
   google_fonts: ^2.1.0
+  flutter_svg: ^0.23.0+1
+  mailer: ^5.0.2
+  
+  cached_network_image: ^3.1.0+1
 
 flutter_icons:
   android: true
@@ -60,7 +64,9 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - images/images_1.jpg
+    - images/images1.jpg
+    - images/repair_icon.png
+    - images/logo.jpg
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
