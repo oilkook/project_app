@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project_app/Homepage/homepage.dart';
+import 'package:project_app/Screens/home/home_screen.dart';
 
 class FormScreens extends StatelessWidget {
   final String roomnumber;
@@ -140,7 +141,7 @@ class FormScreens extends StatelessWidget {
                               print('ยืนยัน');
                               Navigator.push(context,
                                   MaterialPageRoute(builder: (context) {
-                                return HomePage();
+                                return HomeScreen();
                               }));
                             })
                       ],
@@ -155,7 +156,7 @@ class FormScreens extends StatelessWidget {
                   alignment: Alignment.center,
                   width: MediaQuery.of(context).size.width,
                   padding: const EdgeInsets.symmetric(vertical: 15),
-                  color: Colors.blueGrey[50],
+                  color: Colors.orange,
                   child: Text("ยืนยันการซ่อม",
                       style: TextStyle(
                           color: Colors.red[700],

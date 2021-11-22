@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mailer/mailer.dart';
 import 'package:mailer/smtp_server.dart';
 import 'package:project_app/Homepage/homepage.dart';
+import 'package:project_app/Screens/home/home_screen.dart';
 import 'package:project_app/view/sent_email.dart';
 
 class CheckList extends StatelessWidget {
@@ -235,7 +236,7 @@ class CheckList extends StatelessWidget {
                               print('ส่งอีเมลแล้ว');
                               Navigator.push(context,
                                   MaterialPageRoute(builder: (context) {
-                                return HomePage();
+                                return HomeScreen();
                               }));
                             },
                           ),
@@ -252,7 +253,7 @@ class CheckList extends StatelessWidget {
                     alignment: Alignment.center,
                     width: MediaQuery.of(context).size.width,
                     padding: const EdgeInsets.symmetric(vertical: 15),
-                    color: Colors.blueGrey[50],
+                    color: Colors.orange,
                     child: Text("ส่ง Email",
                         style: TextStyle(
                             color: Colors.red[700],

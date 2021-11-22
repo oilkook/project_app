@@ -24,7 +24,7 @@ class Body extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => More(),
+                  builder: (context) => MoreRepair(),
                 ),
               );
             },
@@ -34,9 +34,12 @@ class Body extends StatelessWidget {
               title: 'ยืนยันเข้าซ้อม',
               press: () {
                 print('ใบยืนยันเข้าซ่อมทั้งหมด');
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return ConfirmRepairCardMore();
-                }));
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MoreConfirm(),
+                  ),
+                );
               }),
           ConfirmRepairCardBox(),
           SizedBox(height: kDefaultPadding),
