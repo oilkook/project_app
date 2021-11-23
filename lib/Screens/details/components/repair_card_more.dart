@@ -49,6 +49,7 @@ class _MoreState extends State<MoreRepair> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.orange[100],
       appBar: AppBar(
         title: Text('ใบแจ้งซ่อมทั้งหมด'),
         leading: IconButton(

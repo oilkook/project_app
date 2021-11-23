@@ -35,7 +35,7 @@ class HeaderWithBox extends StatelessWidget {
           ),
           Spacer(),
           Image(
-            image: AssetImage('images/repair_icon.png'),
+            image: AssetImage('assets/images/repair_icon.png'),
           )
         ],
       ),

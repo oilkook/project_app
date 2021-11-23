@@ -49,6 +49,7 @@ class _MoreConfirmState extends State<MoreConfirm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.orange[100],
       appBar: AppBar(
         title: Text('ใบแจ้งซ่อมที่ยืนยันแล้วทั้งหมด'),
         leading: IconButton(
