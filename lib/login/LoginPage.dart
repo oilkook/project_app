@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project_app/Screens/home/home_screen.dart';
+import 'package:project_app/actions/ActionLogin.dart';
 import 'package:project_app/constants.dart';
 import 'package:project_app/login/login_screens.dart';
 
@@ -196,12 +197,17 @@ class _LoginPageState extends State<LoginPage> {
                 GestureDetector(
                   behavior: HitTestBehavior.translucent,
                   onTap: () async {
-                    showCupertinoDialog(
-                      context: context,
-                      builder: (context) {
-                        return HomeScreen();
-                      },
-                    );
+                    // showCupertinoDialog(
+                    //   context: context,
+                    //   builder: (context) {
+                    //     return Container(
+                    //       child: Card(
+                    //         child: Text('sss'),
+                    //       ),
+                    //     );
+                    //   },
+                    // );
+                    await ActionLogin().loginWithGoogle();
                   },
                   child: Card(
                     elevation: 8,
@@ -211,7 +217,7 @@ class _LoginPageState extends State<LoginPage> {
                       alignment: Alignment.center,
                       width: MediaQuery.of(context).size.width * 0.5,
                       padding: const EdgeInsets.symmetric(vertical: 10),
-                      color: kPrimaryColor,
+                      color: Colors.red,
                       child: Text("Log In With Google",
                           style: TextStyle(
                               color: Colors.white,
